@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+
+if [ ! -d "$1" ]; then
+  echo "usage: mk-hsfiles <directory>" >&2
+  exit 64
+fi
+
+src=$1
+
+find "$src" -type f -printf '%P\n' | while read -r path; do
+  echo "{-# START_FILE $path #-}"
+  cat "$src/$path"
+  echo
+done

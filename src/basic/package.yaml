@@ -1,0 +1,86 @@
+---
+name: {{name}}
+version: 1.0.0.0
+category: {{category}}
+author: {{author-name}}
+maintainer: {{author-email}}
+copyright: {{copyright}}
+license: MIT
+github: {{github-username}}/{{name}}
+synopsis: Shorter description
+description: |
+  Extended description
+
+extra-doc-files:
+  - CHANGELOG.md
+  - README.lhs
+
+tested-with: GHC==8.4.3
+
+ghc-options:
+  -Weverything
+  -Wno-missing-exported-signatures
+  -Wno-missed-specialisations
+  -Wno-all-missed-specialisations
+  -Wno-unsafe
+  -Wno-safe
+  -Wno-missing-local-signatures
+  -Wno-monomorphism-restriction
+  -Wno-missing-import-lists
+
+dependencies:
+  - base >= 4.11 && < 5
+
+default-extensions:
+  - BangPatterns
+  - DeriveAnyClass
+  - DeriveFoldable
+  - DeriveFunctor
+  - DeriveGeneric
+  - DeriveLift
+  - DeriveTraversable
+  - DerivingStrategies
+  - FlexibleContexts
+  - FlexibleInstances
+  - GADTs
+  - GeneralizedNewtypeDeriving
+  - LambdaCase
+  - MultiParamTypeClasses
+  - NoImplicitPrelude
+  - NoMonomorphismRestriction
+  - OverloadedStrings
+  - RankNTypes
+  - RecordWildCards
+  - ScopedTypeVariables
+  - StandaloneDeriving
+  - TypeApplications
+  - TypeFamilies
+
+library:
+  source-dirs: library
+  # dependencies:
+
+executables:
+  {{name}}:
+    main: Main.hs
+    source-dirs: executables
+    dependencies:
+      - {{name}}
+
+tests:
+  hspec:
+    main: Spec.hs
+    source-dirs: tests
+    ghc-options: -rtsopts
+    dependencies:
+      - {{name}}
+      - hspec
+
+  readme:
+    main: README.lhs
+    source-dirs: .
+    ghc-options: -pgmL markdown-unlit
+    dependencies:
+      - base
+      - {{name}}
+      - markdown-unlit

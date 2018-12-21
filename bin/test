@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -e
+
+if [ ! -f "$1.hsfiles" ]; then
+  echo "usage: test <name>" >&2
+  ext 64
+fi
+
+cwd=$PWD
+name=$1
+
+cd test
+stack new "$name" "$cwd/$name".hsfiles
+
+cd "$name"
+make
