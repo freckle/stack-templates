@@ -1,3 +1,5 @@
+**NOTE**: This never took off within the team, so this repository has been Archived.
+
 # Stack Templates
 
 ## Usage
